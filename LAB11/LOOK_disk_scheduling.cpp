@@ -41,5 +41,5 @@ int main()
         total_seek_time+=seek;
     }
      cout<<"TOTAL SEEK TIME: "<<total_seek_time<<endl;
-    cout<<"AVERAGE SEEK TIME: "<<(float)total_seek_time/num<<endl;
+    cout<<"AVERAGE SEEK TIME: "<<(float)total_seek_time/(num-1)<<endl;
 }

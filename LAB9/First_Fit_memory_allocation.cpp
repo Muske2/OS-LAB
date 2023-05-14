@@ -32,29 +32,17 @@ int main()
     }
     for(int i=0;i<num_process;i++)
     {
-            if(!process[i].allocated)
-            {
-                int min_index=-1,min_size=99999;
-                for(int j=0;j<num_holes;j++)
-                {
-                    if(process[i].size<=hole[j].rem && min_size>hole[j].rem)
-                    {
-                        min_size=hole[j].rem;
-                        min_index=j;
-                    }
-                }
-                if(min_index==-1)
-                {
-                    process[i].allocated=false;
-                }
-                else
-                {
-                    process[i].id=min_index;
-                    process[i].allocated=true;
-                    hole[min_index].allocated=true;
-                    hole[min_index].rem-=process[i].size;
-                }
-            }
+       for(int j=0;j<num_holes;j++)
+       {
+           if(process[i].size<=hole[j].rem)
+           {
+               hole[j].rem-=process[i].size;
+               process[i].allocated=true;
+               process[i].id=j;
+               hole[j].allocated=true;
+               break;
+           }
+       }
     }
     cout<<"--------------------------------------------------------------------------------------"<<endl;
   cout<<"Process "<<"\tAllocated Holes \tUnallocated Status "<<endl;
